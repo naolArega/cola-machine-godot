@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Loading screen.gd" type="Script" id=1]
+[ext_resource path="res://fonts/LLPIXEL3.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "delay_load"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "goto_game"
+} ]
+}
+
+[node name="Loading screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.52549, 0.901961, 0.333333, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 40.0
+margin_top = 499.0
+margin_right = 984.0
+margin_bottom = 560.0
+size_flags_vertical = 12
+custom_constants/separation = 100
+alignment = 1
+
+[node name="Loading_spiner" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 353.0
+margin_right = 591.0
+margin_bottom = 61.0
+rect_pivot_offset = Vector2( 32, 32 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0745098, 0.431373, 1, 1 )
+text = "Loading..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "delay_load"
+anims/delay_load = SubResource( 2 )

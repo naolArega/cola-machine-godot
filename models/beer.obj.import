@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/beer.obj-4ddbc85d917b5659e762234cf1032e49.mesh"
+
+[deps]
+
+files=[ "res://.import/beer.obj-4ddbc85d917b5659e762234cf1032e49.mesh" ]
+
+source_file="res://models/beer.obj"
+dest_files=[ "res://.import/beer.obj-4ddbc85d917b5659e762234cf1032e49.mesh", "res://.import/beer.obj-4ddbc85d917b5659e762234cf1032e49.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

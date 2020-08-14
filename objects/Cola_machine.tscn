@@ -1,0 +1,116 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://models/cola machine.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://models/ground.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://resources/material/cola_machine_material.tres" type="Material" id=3]
+[ext_resource path="res://resources/material/rock_material.tres" type="Material" id=4]
+[ext_resource path="res://resources/material/button_material.tres" type="Material" id=5]
+[ext_resource path="res://models/cola_button.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://models/water_button.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://models/beer_button.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://scripts/Cola_machine.gd" type="Script" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.522464, 1.00698, 0.505278 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.0558834, 0.025275, 0.0191404 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.0558834, 0.0254075, 0.0191404 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.0558834, 0.0250628, 0.0191404 )
+
+[sub_resource type="Animation" id=5]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.411564, 0.280756 ), Vector3( 0, -0.537966, 0.378358 ), Vector3( 0, -0.537966, 0.47116 ), Vector3( 0, -0.537966, 0.47116 ), Vector3( 0, -0.29932, 0.822644 ), Vector3( 0.66633, -0.00101227, 1.15606 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -90 ), Vector3( 0, 0, -90 ), Vector3( 0, 0, -90 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Cola_machine" type="StaticBody"]
+script = ExtResource( 9 )
+
+[node name="Cola_machine_mesh" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Rock" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="Cola_machine_collision_shape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0270897, 0.00541782 )
+shape = SubResource( 1 )
+
+[node name="Buttons" type="Spatial" parent="."]
+
+[node name="Cola_button" type="MeshInstance" parent="Buttons"]
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 5 )
+
+[node name="Cola_area" type="Area" parent="Buttons/Cola_button"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274973, 0.428379, 0.510045 )
+
+[node name="Cola_collision" type="CollisionShape" parent="Buttons/Cola_button/Cola_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000371158, -0.00191793, -0.00787395 )
+shape = SubResource( 2 )
+
+[node name="Water_button" type="MeshInstance" parent="Buttons"]
+mesh = ExtResource( 7 )
+material/0 = ExtResource( 5 )
+
+[node name="Water_area" type="Area" parent="Buttons/Water_button"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.277247, 0.361151, 0.510045 )
+
+[node name="Water_collision" type="CollisionShape" parent="Buttons/Water_button/Water_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00216573, 0.00342453, -0.00788206 )
+shape = SubResource( 3 )
+
+[node name="Beer_button" type="MeshInstance" parent="Buttons"]
+mesh = ExtResource( 8 )
+material/0 = ExtResource( 5 )
+
+[node name="Beer_area" type="Area" parent="Buttons/Beer_button"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.272359, 0.306429, 0.510045 )
+
+[node name="Beer_collision" type="CollisionShape" parent="Buttons/Beer_button/Beer_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00306597, -0.00401133, -0.00788206 )
+shape = SubResource( 4 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.516025, 0.856573, 0, -0.856573, 0.516025, 0, 2, 1.5 )
+
+[node name="Beverage_spawn" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66633, -0.00101227, 1.15606 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Beverage_spawn"]
+anims/beverage_spawn = SubResource( 5 )
+
+[node name="Beverage_life_time" type="Timer" parent="."]
+wait_time = 7.0
+[connection signal="input_event" from="Buttons/Cola_button/Cola_area" to="." method="_on_Cola_area_input_event"]
+[connection signal="input_event" from="Buttons/Water_button/Water_area" to="." method="_on_Water_area_input_event"]
+[connection signal="input_event" from="Buttons/Beer_button/Beer_area" to="." method="_on_Beer_area_input_event"]
+[connection signal="timeout" from="Beverage_life_time" to="." method="_on_Beverage_life_time_timeout"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/material/water_material.tres" type="Material" id=1]
+[ext_resource path="res://models/water.obj" type="ArrayMesh" id=2]
+
+[node name="Water" type="Spatial"]
+
+[node name="Water mesh" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )
